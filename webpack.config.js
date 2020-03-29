@@ -1,75 +1,69 @@
-const path = require("path");
+const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const sass = require('node-sass');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const commonDev = {
-  entry: path.resolve(__dirname, './src/main.js'),
+module.exports = {
+  entry: [
+    './src/index.js',
+    './src/main.scss',
+  ],
+  output: {
+    filename: './js/bundle.js'
+  },
+  devtool: "source-map",
   module: {
     rules: [
-
       {
+        test: /\.(sass|scss)$/,
+        include: path.resolve(__dirname, 'src/'),
+        use: ExtractTextPlugin.extract({
+          use: [{
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              url: false
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }],
+        })
+      }, {
         test: /\.js$/,
-        loader: "babel-loader",
-        exclude: /node_modules/,
-        options: {
-          presets: ['@babel/preset-env'],
-          plugins: ["@babel/plugin-syntax-dynamic-import"]
+        include: path.resolve(__dirname, 'src/'),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          }
         }
-      },{
-        test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
-      },{
+      }, {
         test: /\.pug$/,
         loader: 'pug-loader',
         options: {
           pretty: true,
-        },
+        }
       }
-    ],
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.pug',
-    }),
+    template: './src/index.pug',
+  }),
+  new ExtractTextPlugin({
+    filename: './style.bundle.css',
+    allChunks: true,
+  }),
   ],
-  devtool: "#eval-source-map"
-};
-
-const devConf = {
   devServer: {
     historyApiFallback: true,
-    noInfo: false,
-    stats: 'verbose',
-    filename: 'bundle.js',
-    clientLogLevel: 'debug',
     overlay: {
       warnings: true,
-      errors: true,
+      errors: true
     },
     open: 'google-chrome'
-  },
-};
-
-module.exports = (env) => {
-  if (env === 'development') {
-
-    return Object.assign(
-      {},
-      commonDev,
-      devConf,
-    );
-  } else {
-    return Object.assign(
-      {},
-      commonDev,
-      devConf,
-      prodConf
-    );
   }
 };
