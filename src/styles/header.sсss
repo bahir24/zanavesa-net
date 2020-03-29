@@ -1,53 +1,6 @@
 .header {
-  background: #000;
   height: 10vh;
-  border: none;
-  color: red;
 }
-
-.header__columns {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-
-.header__col-left,
-.header__col-center,
-.header__col-right {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.header__col-center {
-  flex: 1;
-  text-align: center;
-  margin-right: 1%;
-
-  // @include tablets {
-  //   flex: unset;
-  // }
-}
-
-.header__col-right {
-  max-width: 10%;
-
-  // @include tablets {
-  //   padding-right: 2%;
-  // }
-}
-
-.header__mobile-socials {
-  display: none;
-
-  // @include phones {
-  //   position: absolute;
-  //   display: block;
-  //   height: 100%;
-  //   width: 70%;
-  //   top: 100%;
-  //   z-index: 100;
-  // }
+.nav-link {
+  text-transform: uppercase;
 }

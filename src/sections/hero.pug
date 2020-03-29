@@ -1,0 +1,20 @@
+.hero
+  .container-fluid.h-100.p-0
+    .carousel.slide.h-100(data-ride='carousel' id='carouselExampleIndicators')
+      ol.carousel-indicators
+        li.active(data-target='#carouselExampleIndicators' data-slide-to='0')
+        li(data-target='#carouselExampleIndicators' data-slide-to='1')
+        li(data-target='#carouselExampleIndicators' data-slide-to='2')
+      .carousel-inner.h-100
+        .carousel-item.active.h-100
+          img.d-block.w-100.h-100.slider-img(src='src/images/slider/0.jpg' alt='...')
+        .carousel-item.h-100
+          img.d-block.w-100.h-100.slider-img(src='src/images/slider/1.jpg' alt='...')
+        .carousel-item.h-100
+          img.d-block.w-100.h-100.slider-img(src='src/images/slider/2.jpg' alt='...')
+      a.carousel-control-prev(href='#carouselExampleIndicators' role='button' data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+      a.carousel-control-next(href='#carouselExampleIndicators' role='button' data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next
