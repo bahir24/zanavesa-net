@@ -1,0 +1,17 @@
+{
+  "name": "zanavesa-net",
+  "version": "2.0.0",
+  "description": "Website of the puppet theatre",
+  "main": "index.js",
+  "repository": "git@github.com:bahir24/zanavesa-net.git",
+  "author": "Mihail_Bahirev <7074033@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development --hot",
+    "build": "rm -rf dist && webpack --mode=production --progress",    
+    "serv": "static build"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1"
+  }
+}
