@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const sass = require('node-sass');
 
 const commonDev = {
   entry: path.resolve(__dirname, './src/main.js'),
@@ -20,20 +21,9 @@ const commonDev = {
         test: /\.s[ac]ss$/i,
         use: [
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },{
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              implementation: require('sass'),
-            },
-          },
+          'css-loader',
+          'sass-loader',
         ],
-        
       },{
         test: /\.pug$/,
         loader: 'pug-loader',
@@ -72,7 +62,7 @@ module.exports = (env) => {
     return Object.assign(
       {},
       commonDev,
-      devConf
+      devConf,
     );
   } else {
     return Object.assign(
