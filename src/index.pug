@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width", initial-scale="1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Bez-Zanavesa | main page
+  body
+    .wrapper
+      .maincontent 
+        header.header            
+            .container.container--header              
+              .header__columns
+                .header__col-left              
+                  .logo
+                .header__col-center                  
+                  nav.nav
+                    .container.container--nav
+                      ul.nav__list
+                        - 
+                          var items= [ 
+                            {
+                                name: 'о театре',
+                                link: '#about'
+                            },{
+                                name: 'афиша',
+                                link: '#poster'
+                            },{
+                                name: 'репертуар',
+                                link: '#repertoire'
+                            },{
+                                name: 'труппа театра',
+                                link: '#team'
+                            },{
+                                name: 'отзывы',
+                                link: '#reviews'
+                            },{
+                                name: 'контакты',
+                                link: '#contacts'
+                            },{
+                                name: 'заказать звонок',
+                                link: '#call'
+                            }
+                          ]
+                        each item in items                       
+                          li.nav__item
+                            a(href=`${item.link}`).nav__link #{item.name}
+                  h1.nav__mobile ТЕАТР БЕЗ ЗАНАВЕСА
+                .header__col-right
+                  .burger
+                    a.burger__link
+                      .burger__link-bars                              
+                  .socials                    
+                    ul.socials__list
+                      - 
+                        var socials= [ 
+                          {
+                              name: 'fb',
+                              link: 'https://www.facebook.com/bezzanavesa'
+                          },{
+                              name: 'vk',
+                              link: 'https://vk.com/bezzanavesa'
+                          },{
+                              name: 'youtube',
+                              link: 'https://www.youtube.com/channel/UC_8d8MYU-WXwnmb0Rs_qPig'
+                          },{
+                              name: 'insta',
+                              link: 'https://www.instagram.com/bezzanavesa'
+                          }
+                        ]
+                      each social in socials                    
+                        li.socials__item
+                          a(
+                            href=`${social.link}`
+                            target="_blank"
+                            ).socials__link 
+                .header__mobile-socials
+                  .socials.socials--mobile
+                    ul.socials__list
+                      - 
+                        var socials= [ 
+                          {
+                              name: 'fb',
+                              link: 'https://www.facebook.com/bezzanavesa'
+                          },{
+                              name: 'vk',
+                              link: 'https://vk.com/bezzanavesa'
+                          },{
+                              name: 'youtube',
+                              link: 'https://www.youtube.com/channel/UC_8d8MYU-WXwnmb0Rs_qPig'
+                          },{
+                              name: 'insta',
+                              link: 'https://www.instagram.com/bezzanavesa'
+                          }
+                        ]
+                      each social in socials                    
+                        li.socials__item.socials__item--grow
+                          a(
+                            href=`${social.link}`
+                            target="_blank"
+                            ).socials__link 
