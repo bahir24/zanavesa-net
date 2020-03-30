@@ -11,8 +11,13 @@ ul.social-network {
     flex-wrap: wrap;
 	margin: 0;
     padding: 0;
-    
-    width: 120px;
+	width: 100%;
+	justify-content: center;
+	@media (min-width: 992px){
+		width: 120px;
+		
+		
+	}
 }
 ul.social-network li {
 	display: inline;

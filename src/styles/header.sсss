@@ -1,6 +1,14 @@
-.header {
-  height: 10vh;
-}
+// .header {
+//   // height: 10vh;
+// }
 .nav-link {
   text-transform: uppercase;
+}
+
+.navbar-nav {
+  font-size: 24px;
+  @media (min-width: 992px){
+		font-size: 16px;
+		
+	}
 }
