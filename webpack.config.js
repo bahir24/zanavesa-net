@@ -8,6 +8,7 @@ module.exports = {
     './src/main.scss',
   ],
   output: {
+    path: path.resolve(__dirname, 'wordpress/wp-content/themes/twentynineteen'),
     filename: './js/bundle.js'
   },
   devtool: "source-map",
@@ -54,7 +55,7 @@ module.exports = {
     template: './src/index.pug',
   }),
   new ExtractTextPlugin({
-    filename: './style.bundle.css',
+    filename: './css/style.bundle.css',
     allChunks: true,
   }),
   ],
