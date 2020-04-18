@@ -7,30 +7,33 @@
   "author": "Mihail_Bahirev <7074033@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --mode=development --progress --env development",
-    "build": "rm -rf dist && webpack --mode=production --progress"
+    "dev": "webpack-dev-server --mode=development --progress --host='127.0.0.4' --port='8080'",
+    "build": "rm -rf dist && webpack --mode=production"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.9.0",
-    "@vue/cli": "^4.2.3",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.4.2",
-    "extract-text-webpack-plugin": "4.0.0-beta.0",
-    "html-webpack-plugin": "^4.0.3",
+    "html-webpack-plugin": "^4.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.4",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@popperjs/core": "^2.3.3",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
-    "mdbootstrap": "^4.14.1",
-    "popper.js": "^1.16.1"
+    "file-loader": "^6.0.0",
+    "image-webpack-loader": "^6.0.0",
+    "jquery": "^3.5.0",
+    "popper.js": "^1.16.1",
+    "url-loader": "^4.1.0"
   }
 }

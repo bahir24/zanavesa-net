@@ -1,45 +1,56 @@
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const sass = require('node-sass');
 
 module.exports = {
-  entry: [
-    './src/index.js',
-    './src/main.scss',
-  ],
+
+  entry: './src/index.js',
   output: {
-    filename: './js/bundle.js'
+    filename: './js/bundle.js',
   },
   devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.(sass|scss)$/,
-        include: path.resolve(__dirname, 'src/'),
-        use: ExtractTextPlugin.extract({
-          use: [{
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              url: false
-            }
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            }
-          }],
-        })
-      }, {
         test: /\.js$/,
         include: path.resolve(__dirname, 'src/'),
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
+            plugins: ["@babel/plugin-syntax-dynamic-import"]
           }
-        }
+        },
+      }, {
+        test: /\.scss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      }, {
+        test: /\.(woff2?)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[hash].[ext]',
+              sourceMap: true,
+            },
+          }
+        ],  
+      }, {
+        test: /\.(jpe?g)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[hash].[ext]',
+            },
+          }
+        ],
       }, {
         test: /\.pug$/,
         loader: 'pug-loader',
@@ -51,19 +62,16 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-    template: './src/index.pug',
-  }),
-  new ExtractTextPlugin({
-    filename: './style.bundle.css',
-    allChunks: true,
-  }),
+      template: './src/index.pug',
+      filename: './index.html'
+    }),
   ],
   devServer: {
     historyApiFallback: true,
+    filename: 'bundle.js',
     overlay: {
       warnings: true,
       errors: true
-    },
-    open: 'google-chrome'
+    }
   }
 };

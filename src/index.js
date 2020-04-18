@@ -1,6 +1,4 @@
-import jQuery from 'jquery';
-import popper from 'popper.js';
-import bootstrap from 'bootstrap';
-// import './styles/header.sсss';
-
-
+import './main.scss';
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
