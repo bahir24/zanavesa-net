@@ -1,40 +1,42 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
-  entry: [
-    './src/index.js',
-    './src/main.scss',
-  ],
-  output: {
-    path: path.resolve(__dirname, 'wordpress/wp-content/themes/twentynineteen'),
-    filename: './js/bundle.js'
+const devServer = {
+  devServer: {
+    historyApiFallback: true,
+    noInfo: false,
+    port: 9000,
+    stats: 'verbose',
+    filename: 'bundle.js',
+    clientLogLevel: 'debug',
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
   },
-  devtool: "source-map",
+};
+
+const loaders = {
   module: {
     rules: [
       {
         test: /\.(sass|scss)$/,
-        include: path.resolve(__dirname, 'src/'),
-        use: ExtractTextPlugin.extract({
-          use: [{
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              url: false
-            }
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            }
-          }],
-        })
+        use: [{
+          loader: "css-loader",
+          options: {
+            sourceMap: true,
+            url: false
+          }
+        }, {
+          loader: "sass-loader",
+          options: {
+            sourceMap: true
+          }
+        }],
       }, {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'src/'),
         use: {
           loader: 'babel-loader',
           options: {
@@ -49,22 +51,43 @@ module.exports = {
         }
       }
     ]
-  },
+  }
+};
+
+const plugins = {
   plugins: [
     new HtmlWebpackPlugin({
-    template: './src/index.pug',
-  }),
-  new ExtractTextPlugin({
-    filename: './css/style.bundle.css',
-    allChunks: true,
-  }),
+      template: './src/index.pug',
+    }),
+    new ExtractTextPlugin({
+      filename: './css/style.bundle.css',
+      allChunks: true,
+    }),    
   ],
-  devServer: {
-    historyApiFallback: true,
-    overlay: {
-      warnings: true,
-      errors: true
-    },
-    open: 'google-chrome'
+};
+
+
+module.exports = (env) => {
+  devtool = "source-map";
+  entry = [
+    './src/index.js',
+    './src/main.scss',
+  ];
+  output = [
+    './js/bundle.js',
+    './css/css.bundle.js',
+  ];
+  if (env === 'development') {
+    return Object.assign(
+      {},
+      devServer,
+      loaders,
+    );
+  } else {
+    return Object.assign(
+      {},
+      plugins,
+      loaders
+    );
   }
 };
