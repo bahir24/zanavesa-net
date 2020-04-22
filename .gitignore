@@ -1,3 +1,5 @@
 /node_modules
 /notes
 /notes/*
+.yarnclean
+yarn-error.log

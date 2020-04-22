@@ -7,14 +7,13 @@ module.exports = {
 
   entry: './src/index.js',
   output: {
-    filename: './js/bundle.js',
+    filename: './index.js',
   },
   devtool: "source-map",
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'src/'),
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -31,32 +30,24 @@ module.exports = {
           'sass-loader',
         ],
       }, {
-        test: /\.(woff2?)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[hash].[ext]',
-              sourceMap: true,
-            },
-          }
-        ],  
-      }, {
-        test: /\.(jpe?g)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[hash].[ext]',
-            },
-          }
-        ],
+        test: /\.(woff2?|jpe?g|png)$/i,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash].[ext]",
+          },
+        },
       }, {
         test: /\.pug$/,
-        loader: 'pug-loader',
-        options: {
-          pretty: true,
-        }
+        oneOf: [
+          {
+            resourceQuery: /^\?vue/,
+            use: ["pug-plain-loader"]
+          },
+          {
+            use: ["pug-loader"]
+          }
+        ]
       }
     ]
   },
@@ -69,6 +60,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     filename: 'bundle.js',
+    open: true,
     overlay: {
       warnings: true,
       errors: true
