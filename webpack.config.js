@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const sass = require('node-sass');
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
   output: {
     filename: './index.js',
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -56,6 +57,12 @@ module.exports = {
       template: './src/index.pug',
       filename: './index.html'
     }),
+    new CopyPlugin([
+      {
+        from: 'src/images/',
+        to: '[name].[contenthash].[ext]'
+      }
+    ]),
   ],
   devServer: {
     historyApiFallback: true,

@@ -1,5 +1,6 @@
 {
-    "files.exclude": {
-        "**/.vscode": true
-    }
+    "workbench.commandPalette.history": 500,
+    "terminal.integrated.confirmOnExit": true,
+    "terminal.integrated.detectLocale": "on",
+    "terminal.integrated.scrollback": 500,
 }
